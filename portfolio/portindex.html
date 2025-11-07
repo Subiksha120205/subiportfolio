@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Subiksha A S — UI/UX Designer</title>
+
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+
+/* ====== Global ====== */
+:root{
+  --bg-1:#071330;
+  --bg-2:#0b2540;
+  --muted: #b6c3d3;
+  --glass: rgba(255,255,255,0.04);
+  --accent1:#38bdf8; /* cyan */
+  --accent2:#facc15; /* yellow */
+  --accent3:#fb7185; /* pink */
+  --card-bg: rgba(255,255,255,0.03);
+  --maxw:1100px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:"Poppins",system-ui,Segoe UI,Roboto,Arial;
+  background: linear-gradient(120deg,var(--bg-1), var(--bg-2));
+  color:#eaf3ff; -webkit-font-smoothing:antialiased;
+  background-size: 400% 400%; animation: bgFlow 12s ease infinite;
+}
+@keyframes bgFlow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.container{max-width:var(--maxw); margin:0 auto; padding:24px;}
+
+header {
+  position:fixed; inset:0 0 auto 0; height:68px; display:flex; align-items:center;
+  backdrop-filter: blur(6px); background: linear-gradient(180deg, rgba(8,20,36,0.35), rgba(8,20,36,0.25));
+  z-index:50; width:100%;
+}
+.nav{max-width:var(--maxw); margin:0 auto; width:100%; padding:0 22px; display:flex; align-items:center; justify-content:space-between}
+.brand{font-weight:700; font-size:18px; color: #fff}
+nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-weight:500}
+nav a:hover{color:var(--accent1)}
+
+main{padding-top:110px}
+
+/* ====== HERO ====== */
+.hero{
+  min-height:74vh; display:flex; align-items:center; justify-content:center;
+  padding:36px 22px;
+}
+.hero-inner{display:grid; grid-template-columns: 320px 1fr; gap:36px; align-items:center; width:100%; max-width:var(--maxw)}
+
+/* ===== Profile Image Animations ===== */
+@keyframes slideInLeft{
+  0%{transform:translateX(-150px); opacity:0;}
+  100%{transform:translateX(0); opacity:1;}
+}
+
+.profile-ring{
+  width:320px; 
+  height:320px; 
+  border-radius:50%;
+  display:flex; 
+  align-items:center; 
+  justify-content:center;
+  padding:8px;
+  background: linear-gradient(145deg,var(--accent1), var(--accent2));
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  animation: slideInLeft 1s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.profile-ring:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(56,189,248,0.7), 0 0 20px rgba(250,204,21,0.5);
+}
+.profile-ring:active{transform: scale(0.95);}
+.profile-inner{width:100%; height:100%; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--bg-2); padding:10px}
+.profile-inner img{width:100%; height:100%; object-fit:cover; border-radius:50%; border:6px solid rgba(0,0,0,0.45);}
+
+/* hero text animations */
+@keyframes fadeSlideUp{
+  0%{opacity:0; transform:translateY(20px);}
+  100%{opacity:1; transform:translateY(0);}
+}
+.hero-body h1, .hero-body h2, .hero-links, .hero-body .meta{
+  opacity:0;
+  animation: fadeSlideUp 0.8s ease-out forwards;
+}
+.hero-body h1{animation-delay:0.3s;}
+.hero-body h2{animation-delay:0.6s;}
+.hero-links{animation-delay:0.9s;}
+.hero-body .meta{animation-delay:1.2s;}
+
+/* resume button animation */
+.resume-btn{
+  display:inline-block; padding:12px 24px; border-radius:999px; font-weight:700; color:#021523;
+  background: linear-gradient(270deg, var(--accent1), var(--accent2), var(--accent3));
+  background-size: 600% 600%;
+  animation: btnMove 6s ease infinite;
+  text-decoration:none; box-shadow: 0 8px 30px rgba(2,12,20,0.45);
+}
+@keyframes btnMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero-links{margin-top:14px; display:flex; gap:12px; flex-wrap:wrap}
+
+/* ====== Sections (cards) ====== */
+section.section{
+  margin:36px 0; padding:28px; border-radius:14px; background:var(--card-bg); box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+  opacity:0; transform:translateY(22px);
+  animation: sectionFade 0.8s ease-out forwards;
+}
+@keyframes sectionFade{
+  0%{opacity:0; transform:translateY(22px);}
+  100%{opacity:1; transform:translateY(0);}
+}
+
+/* stagger sections using delay (optional for nicer effect) */
+section.section:nth-child(2){animation-delay:0.3s;}
+section.section:nth-child(3){animation-delay:0.6s;}
+section.section:nth-child(4){animation-delay:0.9s;}
+section.section:nth-child(5){animation-delay:1.2s;}
+section.section:nth-child(6){animation-delay:1.5s;}
+section.section:nth-child(7){animation-delay:1.8s;}
+
+.section-title{display:flex; align-items:center; gap:12px; margin-bottom:14px}
+.section-title h3{margin:0; font-size:20px; color:var(--accent1)}
+
+.two-col{display:grid; grid-template-columns: 1fr 1fr; gap:18px}
+.skill-grid{display:flex; flex-direction:column; gap:12px}
+.skill-item{display:flex; align-items:center; gap:12px; padding:10px; border-radius:10px; background:rgba(255,255,255,0.02); opacity:0; transform:translateY(20px); animation: fadeSlideUp 0.8s ease-out forwards;}
+.skill-item:nth-child(1){animation-delay:0.2s;}
+.skill-item:nth-child(2){animation-delay:0.4s;}
+.skill-item:nth-child(3){animation-delay:0.6s;}
+
+.edu-item, .intern-item, .proj-card{
+  border-radius:12px; padding:14px; background: rgba(255,255,255,0.02);
+  opacity:0; transform:translateY(20px); animation: fadeSlideUp 0.8s ease-out forwards;
+}
+.proj-grid{display:grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap:16px}
+
+.meta{color:var(--muted); font-size:13px}
+ul.inline-list{display:flex; gap:10px; flex-wrap:wrap; padding:0; list-style:none; margin:0}
+.pill{padding:6px 10px; background:rgba(255,255,255,0.03); border-radius:999px; font-weight:600; color:var(--muted)}
+
+.extra-list{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+.extra-list li{display:flex; gap:10px; align-items:flex-start}
+
+.contact-grid{display:grid; grid-template-columns: 2fr 1fr; gap:18px}
+label{display:block; font-size:13px; margin-bottom:6px; color:var(--muted)}
+input[type="text"], input[type="email"], textarea{
+  width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:#eaf3ff;
+}
+textarea{min-height:140px; resize:vertical}
+.send-btn{padding:10px 14px; border-radius:10px; background:linear-gradient(90deg,var(--accent1),var(--accent2)); border:none; color:#021523; font-weight:700; cursor:pointer}
+.alert{padding:10px 12px; border-radius:8px; font-weight:600}
+
+/* responsive */
+@media (max-width:900px){
+  .hero-inner{grid-template-columns: 1fr; text-align:center}
+  .profile-ring{width:220px; height:220px}
+  .contact-grid{grid-template-columns:1fr}
+  .two-col{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="nav">
+    <div class="brand">Subiksha A S</div>
+    <nav>
+  <a href="#about">About</a>
+  <a href="#tech">Technical</a>
+  <a href="#education">Education</a>
+  <a href="#intern">Internships</a>
+  <a href="#projects">Projects</a>
+  <a href="#achievements">Achievements</a>
+  <a href="#strengths">Strengths</a>
+  <a href="#hobbies">Hobbies</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+
+  </div>
+</header>
+
+<main class="container">
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <!-- Left: profile image -->
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <div class="profile-ring" aria-hidden="true">
+          <div class="profile-inner">
+            <!-- Replace with your photo file name -->
+            <img src="C:\Users\subik\OneDrive\Documents\Custom Office Templates\subi photo.jpg" alt="Subiksha Profile photo" id="profileImg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: intro -->
+      <div class="hero-body">
+        <h1>Hi, I'm <span>Subiksha</span></h1>
+        <!-- typing element (only once) -->
+        <h2 id="typingTitle" aria-live="polite"></h2>
+
+        <div class="hero-links">
+          <!-- Replace with actual resume file or external URL -->
+          <a class="resume-btn" id="downloadResume" href="c:\Users\subik\Downloads\Subiksha Resume.pdf" download>Download Resume</a>
+          <a class="pill" href="#projects">See Projects</a>
+        </div>
+
+        <p class="meta" style="margin-top:14px">Information Technology student • UI / UX Designer • Passionate about user-centered interfaces</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section id="about" class="section">
+    <div class="section-title"><h3>About Me</h3></div>
+    <p style="color:var(--muted); max-width:900px">
+      Hi, I’m Subiksha A S, an Information Technology undergraduate with a passion for UI/UX design, front-end development, and digital technologies. I have technical skills in C, Python, Java, HTML, CSS, UI/UX design, and Digital Marketing.
+
+I have completed a Web Development internship at CodeBind Technology, Chennai (2024), where I worked on responsive layouts and front-end projects, and a UI/UX Design internship at Z2Learn (2025), creating wireframes, interactive prototypes, and improving user experience for real projects.
+
+My resume highlights technical skills, projects, internships, achievements, and strengths, providing a complete view of my abilities in IT and design.
+    </p>
+  </section>
+
+  <!-- ===== Technical Knowledge ===== -->
+  <section id="tech" class="section">
+    <div class="section-title"><h3>Technical Knowledge</h3></div>
+    <div class="two-col">
+      <div>
+        <div class="skill-grid">
+          <div class="skill-item"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M3 7h18" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round"/></svg><div><strong>HTML5 & CSS3</strong><div class="meta">Responsive layouts, Flexbox, Grid</div></div></div>
+          <div class="skill-item"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#facc15" stroke-width="1.6"/></svg><div><strong>JavaScript</strong><div class="meta">DOM, ES6+, Fetch API</div></div></div>
+          <div class="skill-item"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#fb7185" stroke-width="1.6"/></svg><div><strong>UI / Prototyping</strong><div class="meta">Figma — wireframes, prototyping, UI kits</div></div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="skill-grid">
+          <div class="skill-item"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M3 12h18" stroke="#38bdf8" stroke-width="1.6"/></svg><div><strong>Front-end</strong><div class="meta">React basics, component-based UI</div></div></div>
+          <div class="skill-item"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M12 2v20" stroke="#facc15" stroke-width="1.6"/></svg><div><strong>Design Systems</strong><div class="meta">Typography, color systems, accessibility</div></div></div>
+          <div class="skill-item"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M4 6h16" stroke="#fb7185" stroke-width="1.6"/></svg><div><strong>Tools</strong><div class="meta">Git, VSCode, Figma, Adobe XD basics</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Education ===== -->
+  <section id="education" class="section">
+    <div class="section-title"><h3>Education</h3></div>
+
+    <div class="edu-item">
+      <strong>St. Xavier's Catholic College of Engineering</strong>
+      <div class="meta">B.Tech — Information Technology (2022 – 2026) • CGPA: 8.41 (present)</div>
+    </div>
+    <div style="height:12px"></div>
+    <div class="two-col">
+      <div class="edu-item">
+        <strong>Arunachala Matric Higher Secondary School</strong>
+        <div class="meta">HSC (2021 – 2022) — 82.5%</div>
+      </div>
+      <div class="edu-item">
+        <strong>Arunachala Matric Higher Secondary School</strong>
+        <div class="meta">SSLC (2019 – 2020) — 83%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add Font Awesome CDN in your <head> if not already included -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<!-- Add Font Awesome CDN in your <head> if not already included -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<section id="intern" class="section">
+  <div class="section-title"><h3>Internships</h3></div>
+
+  <!-- Internship 1: Frontend -->
+  <div class="intern-item">
+    <strong><i class="fas fa-laptop-code" style="color:#4CAF50; margin-right:5px;"></i> CodeBind Technology, Chennai — Web Development Internship (2024, 1 month)</strong>
+    <div class="meta">
+      Worked on front-end web development projects using HTML, CSS, JavaScript. 
+      Developed responsive layouts and improved UI components for client websites.
+    </div>
+    <div style="margin-top:10px;">
+      <a href="CERTIFICATE_LINK_CODEBIND.pdf" target="_blank" class="pill">
+        <i class="fas fa-certificate"></i> View Certificate
+      </a>
+    </div>
+  </div>
+
+  <div style="height:20px"></div>
+
+  <!-- Internship 2: UI/UX -->
+  <div class="intern-item">
+    <strong><i class="fas fa-pencil-ruler" style="color:#FF5722; margin-right:5px;"></i> Z2Learn — UI/UX Design Internship (2025, 1 month)</strong>
+    <div class="meta">
+      Created wireframes, interactive prototypes, and conducted user research to enhance usability. 
+      Learned industry-standard design practices and tools like Figma & Adobe XD.
+    </div>
+    <div style="margin-top:10px;">
+      <a href="C:\Users\subik\OneDrive\Documents\Custom Office Templates\certificate.png" target="_blank" class="pill">
+        <i class="fas fa-certificate"></i> View Certificate
+      </a>
+    </div>
+  </div>
+<div style="height:20px"></div>
+<!-- Internship 3: UI/UX -->
+  <div class="intern-item">
+    <strong><i class="fas fa-pencil-ruler" style="color:#FF5722; margin-right:5px;"></i> SkillCraft Technologies — UI/UX Design Internship (2025, 1 month)</strong>
+    <div class="meta">
+      Created wireframes, interactive prototypes, and conducted user research to enhance usability. 
+      Learned industry-standard design practices and tools like Figma & Adobe XD.
+    </div>
+    <div style="margin-top:10px;">
+      <a href="C:\Users\subik\OneDrive\Documents\Custom Office Templates\skillcraft.jpg" target="_blank" class="pill">
+        <i class="fas fa-certificate"></i> View Certificate
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- ===== Projects ===== -->
+<section id="projects" class="section">
+  <div class="section-title"><h3>Projects</h3></div>
+
+  <div class="proj-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+
+    <!-- Project 1 -->
+    <article class="proj-card">
+      <img src="C:\Users\subik\Downloads\shoe app.jpeg" alt="Shoe App screenshot" style="width:100%; border-radius:8px; margin-bottom:12px">
+      <h4>Shoe App Interface (UI/UX)</h4>
+      <div class="meta">Figma prototype — swipe shopping, size selector, checkout flow, microinteractions.</div>
+      <div style="margin-top:10px">
+        <a class="pill" href="YOUR_UIUX_PROJECT_LINK" target="_blank">View case study</a>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="proj-card">
+      <img src="C:\Users\subik\Downloads\Smart-Luggage-System-IOT-Project-Proposed-System.png" alt="Smart trekking bag" style="width:100%; border-radius:8px; margin-bottom:12px">
+      <h4>Smart Trekking Bag</h4>
+      <div class="meta">Hackathon project — safety-focused product concept with UI prototype & feature-flow.</div>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="proj-card">
+      <img src="C:\Users\subik\Downloads\artificial.png" alt="Artificial passenger" style="width:100%; border-radius:8px; margin-bottom:12px">
+      <h4>Artificial Passenger(TechnicalSeminar)</h4>
+      <div class="meta">Drowsiness detection concept with UI for driver alerts & voice interactions.</div>
+    </article>
+
+    <!-- Project 4: TN Bus Tracking Website -->
+    <article class="proj-card">
+      <img src="C:\Users\subik\OneDrive\Documents\Custom Office Templates\WhatsApp Image 2025-09-28 at 20.02.30_2feb9798.jpg" alt="TN Bus Tracking Website" style="width:100%; border-radius:8px; margin-bottom:12px">
+      <h4>TN Bus Tracking Website</h4>
+      <div class="meta">Web application for real-time bus location tracking with user & admin dashboards, complaint submission, and driver assignment.</div>
+      <div style="margin-top:10px">
+        <a class="pill" href="http://tn-bustracking.netlify.app" target="_blank">View Live Site</a>
+      </div>
+    </article>
+
+    <!-- Project 5: Portfolio Website -->
+    <article class="proj-card">
+      <img src="C:\Users\subik\OneDrive\Pictures\Screenshots\Screenshot 2025-10-03 215946.png" alt="Portfolio Website" style="width:100%; border-radius:8px; margin-bottom:12px">
+      <h4>Portfolio Website</h4>
+      <div class="meta">Personal portfolio website showcasing projects, internships, achievements, strengths, and hobbies with responsive design.</div>
+      <div style="margin-top:10px">
+        <a class="pill" href="YOUR_PORTFOLIO_LINK" target="_blank">View Live Site</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+  <!-- ===== Achievements ===== -->
+<section id="achievements" class="section">
+  <div class="section-title"><h3>Achievements</h3></div>
+  <ul class="extra-list" style="list-style: none; padding: 0; margin: 0;">
+    
+    <li style="margin-bottom: 15px;">
+      <i class="fas fa-trophy" style="color: gold; margin-right: 10px;"></i>
+      <strong>Smart India Hackathon Participant:</strong> Collaborated in a national-level hackathon solving real-world problems through technology & design thinking.
+    </li>
+    
+    <li style="margin-bottom: 15px;">
+      <i class="fas fa-chart-line" style="color: #7cafd9; margin-right: 10px;"></i>
+      <strong>ICASME’23 Poster Presentation:</strong> Presented project concepts & research findings, improving communication & presentation skills.
+    </li>
+    
+    <li style="margin-bottom: 15px;">
+      <i class="fas fa-medal" style="color: #FF5722; margin-right: 10px;"></i>
+      <strong>Winner — Rangoli Event:</strong> Secured Third prize in cultural competition, showcasing creativity & attention to detail.
+    </li>
+    <li style="margin-bottom: 15px;">
+      <i class="fas fa-medal" style="color: #FF5722; margin-right: 10px;"></i>
+      <strong>Winner — Cooking Event:</strong> Secured Second prize in cultural competition, showcasing creativity & attention to detail.
+    </li>
+    
+    <li style="margin-bottom: 15px;">
+      <i class="fas fa-user-tie" style="color: #4CAF50; margin-right: 10px;"></i>
+      <strong>Executive Member:</strong> Association of Brigitz, IT Dept.
+    </li>
+
+    <li style="margin-bottom: 15px;">
+      <i class="fas fa-laptop-code" style="color: #FF9800; margin-right: 10px;"></i>
+      <strong>Completed UI/UX Course:</strong> Novitech Pvt. Limited.
+    </li>
+
+    <li style="margin-bottom: 15px;">
+      <i class="fas fa-database" style="color: #2196F3; margin-right: 10px;"></i>
+      <strong>Completed MongoDB Basics:</strong> For students program.
+    </li>
+
+    <li style="margin-bottom: 15px;">
+      <i class="fas fa-server" style="color: #9C27B0; margin-right: 10px;"></i>
+      <strong>Completed Database Programming with PL/SQL:</strong> Oracle.
+    </li>
+
+    <li style="margin-bottom: 15px;">
+      <i class="fas fa-graduation-cap" style="color: #4CAF50; margin-right: 10px;"></i>
+      <strong>Completed Finishing School for Employability:</strong> Implemented by ICT Academy in collaboration with Infosys.
+    </li>
+    
+
+  </ul>
+
+  <!-- View All Certificates Link -->
+  <div style="margin-top: 20px;">
+    <a href="YOUR_ALL_CERTIFICATES_LINK" target="_blank" 
+       style="text-decoration: none; background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 25px; font-weight: 500;">
+       📜 View All Certificates
+    </a>
+  </div>
+</section>
+
+<!-- Font Awesome CDN (if not already included) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<!-- Font Awesome CDN (if not already included) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+
+
+<!-- Font Awesome CDN (if not already included) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<!-- ===== Strengths ===== -->
+<section id="strengths" class="section">
+    <div class="section-title"><h3>Strengths</h3></div>
+  <ul class="extra-list" style="list-style: none; padding: 0; margin: 0;">
+    <li style="margin-bottom: 12px;"><i class="fas fa-lightbulb" style="color:#FFD700; margin-right: 10px;"></i> Creative problem-solving and innovative thinking</li>
+    <li style="margin-bottom: 12px;"><i class="fas fa-users" style="color:#2196F3; margin-right: 10px;"></i> User empathy and design thinking mindset</li>
+    <li style="margin-bottom: 12px;"><i class="fas fa-handshake" style="color:#4CAF50; margin-right: 10px;"></i> Strong collaboration and teamwork</li>
+    <li style="margin-bottom: 12px;"><i class="fas fa-tools" style="color:#FF5722; margin-right: 10px;"></i> Adaptability to new tools and technologies</li>
+    <li style="margin-bottom: 12px;"><i class="fas fa-comments" style="color:#9C27B0; margin-right: 10px;"></i> Effective communication and presentation skills</li>
+  </ul>
+</section>
+
+<!-- ===== Hobbies ===== -->
+<section id="hobbies" class="section">
+    <div class="section-title"><h3>Hobbies</h3></div>
+  <ul class="extra-list" style="list-style: none; padding: 0; margin: 0;">
+    <li style="margin-bottom: 12px;"><i class="fas fa-pencil-ruler" style="color:#FF5722; margin-right: 10px;"></i> UI/UX design and prototyping</li>
+    <li style="margin-bottom: 12px;"><i class="fas fa-paint-brush" style="color:#2196F3; margin-right: 10px;"></i> Sketching and creative arts</li>
+    <li style="margin-bottom: 12px;"><i class="fas fa-lightbulb" style="color:#FFD700; margin-right: 10px;"></i> Exploring new design patterns</li>
+    <li style="margin-bottom: 12px;"><i class="fas fa-book-open" style="color:#4CAF50; margin-right: 10px;"></i> Reading design & technology blogs</li>
+    <li style="margin-bottom: 12px;"><i class="fas fa-utensils" style="color:#9C27B0; margin-right: 10px;"></i> Cooking and experimenting with recipes</li>
+  </ul>
+</section>
+
+
+
+
+  <!-- ===== Contact (real-time email send) ===== -->
+  <section id="contact" class="section">
+    <div class="section-title"><h3>Contact Me</h3></div>
+
+    <div class="contact-grid">
+      <!-- left: form -->
+      <div>
+        <form id="contactForm">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" placeholder="Your full name" required>
+
+          <label for="email" style="margin-top:10px">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+          <label for="message" style="margin-top:10px">Message</label>
+          <textarea id="message" name="message" placeholder="Write your message / project brief" required></textarea>
+
+          <div style="margin-top:12px; display:flex; gap:10px; align-items:center">
+            <button type="submit" class="send-btn">Send Message</button>
+            <div id="formStatus" style="min-width:180px"></div>
+          </div>
+        </form>
+      </div>
+
+      <!-- right: quick contact -->
+      <aside style="padding-left:12px">
+        <div style="padding:12px; border-radius:10px; background:rgba(255,255,255,0.02)">
+          <p class="meta"><strong>Phone:</strong> 6374159706</p>
+          <p class="meta"><strong>Email:</strong> subiksha1217@gmail.com</p>
+          <p class="meta"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/subiksha-a-s" target="_blank" style="color:var(--accent1)">View profile</a></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer style="margin-top:26px; text-align:center; padding:20px; color:var(--muted)">
+    © 2025 Subiksha A S — UI/UX Designer
+  </footer>
+</main>
+
+<!-- ====== EmailJS SDK (client-side) ====== -->
+<!-- EmailJS: https://www.emailjs.com/docs/ -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  /* ===== Typing (one-time, slower) ===== */
+  (function typing(){
+    const el = document.getElementById('typingTitle');
+    const text = 'UI / UX Designer';
+    let i=0;
+    function step(){
+      if(i<=text.length){
+        el.textContent = text.slice(0,i++);
+        setTimeout(step, 140);
+      }
+    }
+    step();
+  })();
+
+  /* ===== Scroll reveal for sections ===== */
+  const sections = document.querySelectorAll('.section, .proj-card, .intern-item, .edu-item');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.style.opacity = 1; e.target.style.transform = 'none'; e.target.classList && e.target.classList.add('visible') }
+    });
+  }, {threshold: 0.12});
+  sections.forEach(s=>{
+    s.style.opacity = 0; s.style.transform = 'translateY(22px)'; observer.observe(s);
+  });
+
+  /* ===== EmailJS setup for real-time email sending =====
+     Steps to configure:
+     1) Go to https://www.emailjs.com and sign up (free).
+     2) Add an Email Service (Gmail / Outlook / SMTP) — you'll get a service ID (e.g. "service_xxx").
+     3) Create an Email Template in EmailJS -> note the template ID (e.g. "template_xxx").
+        Template fields: you'll likely include {{from_name}}, {{from_email}}, {{message}}
+     4) In the EmailJS dashboard, copy your PUBLIC (user) ID (looks like "user_xxx") or the new format.
+     5) Replace SERVICE_ID, TEMPLATE_ID, USER_ID below with your actual IDs.
+     6) After replacing, the form will send the email to the address you set in the template or service.
+  */
+  (function(){
+    // TODO: Replace these placeholders with your actual EmailJS IDs
+    const SERVICE_ID = 'service_w75lc59';
+    const TEMPLATE_ID = 'template_zz8tf6i';
+    const USER_ID = '3QA6Miv9t065gtLEY'; // sometimes called public key
+
+    // initialize EmailJS (works if you set USER_ID)
+    if(USER_ID && USER_ID.indexOf('YOUR_')===-1){
+      emailjs.init(USER_ID);
+    }
+
+    const form = document.getElementById('contactForm');
+    const statusDiv = document.getElementById('formStatus');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      statusDiv.textContent = '';
+      // Basic validation
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if(!name || !email || !message){ statusDiv.innerHTML = '<span class="alert" style="background:#ffedd5;color:#7a2e0c">Please fill all fields</span>'; return; }
+
+      // If user didn't replace IDs, show instructions
+      if(SERVICE_ID.startsWith('YOUR_') || TEMPLATE_ID.startsWith('YOUR_') || USER_ID.startsWith('YOUR_')){
+        statusDiv.innerHTML = '<div class="alert" style="background:#fff3cd;color:#7a4b00">Email sending not configured. Replace EmailJS IDs in the HTML as instructed.</div>';
+        return;
+      }
+
+      // disable button
+      const btn = form.querySelector('.send-btn');
+      btn.disabled = true; btn.textContent = 'Sending...';
+
+      // prepare template params (template variables names must match your EmailJS template)
+      const templateParams = {
+        from_name: name,
+        from_email: email,
+        message: message,
+      };
+
+      emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+        .then(function(response){
+          btn.disabled = false; btn.textContent = 'Send Message';
+          form.reset();
+          statusDiv.innerHTML = '<div class="alert" style="background:#d1fae5;color:#065f46">Message sent successfully — I will reply soon.</div>';
+        }, function(err){
+          btn.disabled = false; btn.textContent = 'Send Message';
+          statusDiv.innerHTML = '<div class="alert" style="background:#fee2e2;color:#7f1d1d">Failed to send message. Try again or configure EmailJS correctly.</div>';
+          console.error('EmailJS error:', err);
+        });
+    });
+  })();
+</script>
+</body>
+</html>
